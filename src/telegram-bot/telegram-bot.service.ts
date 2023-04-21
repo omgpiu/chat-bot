@@ -1,19 +1,17 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import * as TelegramBot from 'node-telegram-bot-api';
 import { ChatgptService } from '../chatgpt/chatgpt.service';
 import { Update } from 'node-telegram-bot-api';
-import { telegrafBot } from './bot';
 @Injectable()
 export class TelegramBotService {
   private bot: TelegramBot;
-  private readonly logger = new Logger(TelegramBotService.name);
+
   constructor(
     private configService: ConfigService,
     private chatGPTService: ChatgptService,
   ) {
     const token = this.configService.get<string>('TELEGRAM_BOT_TOKEN');
-    this.initializeBot();
 
     this.bot = new TelegramBot(token, {
       webHook: {
@@ -29,22 +27,6 @@ export class TelegramBotService {
         console.log(e);
       }
     });
-  }
-
-  initializeBot() {
-    this.logger.log('Initializing Telegram bot...');
-
-    telegrafBot.start((ctx) => {
-      ctx.reply('Welcome to my Telegram bot!');
-    });
-
-    telegrafBot.command('help', (ctx) => {
-      ctx.reply('This is a help message.');
-    });
-
-    // Добавьте здесь другие обработчики команд и сообщений
-
-    telegrafBot.launch();
   }
   async setWebhook() {
     const url = `${process.env.APP_URL}/telegram-webhook`;
