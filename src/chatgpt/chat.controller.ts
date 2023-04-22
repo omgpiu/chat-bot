@@ -7,7 +7,6 @@ export class ChatController {
 
   @Post()
   async chat(@Body('message') message: string): Promise<string> {
-    console.log(message, 'message');
     return await this.chatgptService.generateResponse(message);
   }
 }

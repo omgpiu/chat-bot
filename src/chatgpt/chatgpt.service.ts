@@ -9,7 +9,7 @@ export class ChatgptService {
 
   async generateResponse(prompt: string): Promise<string> {
     const apiKey = this.configService.get('OPENAI_API_KEY');
-    console.log({ apiKey });
+
     try {
       const response = await axios.post(
         URL,
@@ -24,7 +24,7 @@ export class ChatgptService {
           },
         },
       );
-      console.log(response.data.choices[0].message, 'messages');
+
       return response.data.choices[0].message.content;
     } catch (e) {
       console.log(e);
