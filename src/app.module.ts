@@ -6,7 +6,6 @@ import { ConfigModule } from '@nestjs/config';
 import { ChatgptService } from './chatgpt/chatgpt.service';
 import { ChatController } from './chatgpt/chat.controller';
 import { TelegramBotService } from './telegram-bot/telegram-bot.service';
-import { TelegramBotModule } from './telegram-bot/telegram-bot.module';
 import config from './config/config';
 
 @Module({
@@ -15,7 +14,6 @@ import config from './config/config';
       load: [config],
       isGlobal: true,
     }),
-    TelegramBotModule,
   ],
   controllers: [AppController, ChatController],
   providers: [AppService, ChatgptService, TelegramBotService],
