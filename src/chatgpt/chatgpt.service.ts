@@ -8,7 +8,7 @@ export class ChatgptService {
   constructor(private configService: ConfigService) {}
 
   async generateResponse(prompt: string): Promise<string> {
-    const apiKey = this.configService.get('OPENAI_API_KEY');
+    const apiKey = this.configService.get('config.openai.apiKey');
 
     try {
       const response = await axios.post(

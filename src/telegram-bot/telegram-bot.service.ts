@@ -11,7 +11,7 @@ export class TelegramBotService {
     private configService: ConfigService,
     private chatGPTService: ChatgptService,
   ) {
-    const token = this.configService.get<string>('TELEGRAM_BOT_TOKEN');
+    const token = this.configService.get<string>('config.openai.botToken');
     this.bot = new TelegramBot(token, { polling: true });
 
     this.bot.on('message', async (msg) => {
