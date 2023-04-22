@@ -9,6 +9,7 @@ export class ChatgptService {
 
   async generateResponse(prompt: string): Promise<string> {
     const apiKey = this.configService.get('config.openai.apiKey');
+    console.log({ apiKey });
     try {
       const response = await axios.post(
         URL,
