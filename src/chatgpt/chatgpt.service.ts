@@ -23,6 +23,7 @@ export class ChatgptService {
           },
         },
       );
+
       return response.data.choices[0].message.content;
     } catch (e) {
       console.log(e);

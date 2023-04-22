@@ -18,7 +18,7 @@ export class TelegramBotService {
       try {
         const chatId = msg.chat.id;
         const response = await this.chatGPTService.generateResponse(msg.text);
-        this.bot.sendMessage(chatId, response);
+        this.bot.sendMessage(chatId, response ?? 'hello');
       } catch (e) {
         console.log(e);
       }
